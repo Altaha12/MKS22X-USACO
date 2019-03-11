@@ -34,6 +34,36 @@ public class USACO{
       instructions[inst][2]=scanner.nextInt();
     }
   }
+  private void operate(int[] directions){
+    int r =directions[0]-1;
+    int c =directions[1]-1;
+    //creating patch of 9x9 plot for cows to stomp on
+    int[][] patch = new int[][]{
+      {r+0,c+0},
+      {r+1,c+0},
+      {r+2,c+0},
+      {r+0,c+1},
+      {r+1,c+1},
+      {r+2,c+1},
+      {r+0,c+2},
+      {r+1,c+2},
+      {r+2,c+2}
+    };
+    int highest = lake[r][c];
+    for(int[] i : patch){
+      if(lake[i[0]][i[1]]>=highest){
+        highest = lake[i[0]][i[1]];
+        r = i[0];
+        c = i[1];
+      }
+    }
+    lake[r][c]-=directions[2];
+    for(int[] i:patch){
+      if(lake[i[0]][i[1]]>lake[r][c]){
+        lake[i[0]][i[1]] = lake[r][c];
+      }
+    }
+  }
   public static String printthis(int[][] board){
     String brd="";
       for(int i=0;i<board.length;i++){
@@ -44,7 +74,7 @@ public class USACO{
            brd+=" ";
           }
         brd = brd.substring(0, brd.length() - 1);
-        brd+="\n";
+        brd+="\n\n";
       }
     return brd;
     }
@@ -56,5 +86,8 @@ public class USACO{
     System.out.print(printthis(test.lake));
     System.out.println("\nAnd Here are the Instructions:");
     System.out.print(printthis(test.instructions));
+    test.operate(test.instructions[0]);
+    System.out.println("\nJust Finished Stomping with given directions");
+    System.out.print(printthis(test.lake));
   }
 }
