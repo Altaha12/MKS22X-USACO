@@ -3,6 +3,48 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Arrays;
 //imorted necessary libraries so far
+//private silver class
+class grass{
+  public int[] ln1;
+  public String[]land;
+  public int time;
+  public int[] coordinates;
+  public grass(String file) throws FileNotFoundException{
+    read(file);
+  }
+  private void read(String filename) throws FileNotFoundException{
+    File landData = new File(filename);
+    Scanner scanner = new Scanner(landData);
+    //read first line and saving time;
+    ln1 = new int[3];
+    for(int i = 0; i<ln1.length; i++){
+      ln1[i]=scanner.nextInt();}
+    //reading land matrix;
+    land = new String[ln1[0]];
+
+    for(int row = 0; row<land.length;row++){
+        land[row]=scanner.nextLine();
+    }
+    scanner.nextLine();
+    //reading coordinates;
+    coordinates = new int[4];
+    for(int a = 0;a<coordinates.length;a++){
+      coordinates[a]=scanner.nextInt();
+    }
+    time = ln1[2];
+  }
+/*  public int solve(int r, int c, int t){
+    if(r==coordinates[2]&&)
+    int cnt=0;
+    int move = int[]{
+      {r+1,c},
+      {r-1,c},
+      {r,c+1},
+      {r,c-1}
+    };
+    for(int )
+  }*/
+}
 public class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
     File LakeData = new File(filename);
@@ -68,5 +110,8 @@ public class USACO{
     return depth*72*72;
     }
   public static void main(String[] args) throws FileNotFoundException {
+    grass blue = new grass("ctravel.1.in");
+    System.out.print(Arrays.toString(blue.ln1)+'\n'+Arrays.deepToString(blue.land) + '\n' + Arrays.toString(blue.coordinates)+"\nHere's the time:" + blue.time);
   }
+
 }
