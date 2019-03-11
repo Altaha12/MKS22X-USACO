@@ -105,10 +105,22 @@ public class USACO{
 
     return depth*72*72;
     }
-  public static void main(String[] args) throws FileNotFoundException {
-    grass blue = new grass(args[0]);
-    System.out.print(Arrays.toString(blue.ln1)+'\n'+Arrays.deepToString(blue.land) + '\n' + Arrays.toString(blue.coordinates)+"\nHere's the time:" + blue.time);
-    System.out.print("\nHere's the Solution:\n"+blue.solve(blue.coordinates[0]-1,blue.coordinates[1]-1,0));
+  public static int silver(String filename) throws FileNotFoundException{
+    grass blue = new grass(filename);
+    return blue.solve(blue.coordinates[0]-1,blue.coordinates[1]-1,0);
   }
-
+  public static void main(String[] args) throws FileNotFoundException {
+    System.out.print(
+    bronze("makelake.1.in")+"\n"+
+    bronze("makelake.2.in")+"\n"+
+    bronze("makelake.3.in")+"\n"+
+    bronze("makelake.4.in")+"\n"+
+    bronze("makelake.5.in")+"\n"+
+    silver("ctravel.1.in")+"\n"+
+    silver("ctravel.2.in")+"\n"+
+    silver("ctravel.3.in")+"\n"+
+    silver("ctravel.4.in")+"\n"+
+    silver("ctravel.5.in")+"\n"
+    );
+  }
 }
