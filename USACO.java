@@ -20,12 +20,11 @@ class grass{
     for(int i = 0; i<ln1.length; i++){
       ln1[i]=scanner.nextInt();}
     //reading land matrix;
+    scanner.nextLine();
     land = new String[ln1[0]];
-
     for(int row = 0; row<land.length;row++){
         land[row]=scanner.nextLine();
     }
-    scanner.nextLine();
     //reading coordinates;
     coordinates = new int[4];
     for(int a = 0;a<coordinates.length;a++){
@@ -33,18 +32,15 @@ class grass{
     }
     time = ln1[2];
   }
-/*  public int solve(int r, int c, int t){
-    if(r==coordinates[2]&&)
+  public int solve(int r, int c,int t){
     int cnt=0;
-    int move = int[]{
-      {r+1,c},
-      {r-1,c},
-      {r,c+1},
-      {r,c-1}
-    };
-    for(int )
-  }*/
-}
+    if(r==coordinates[2]-1&&c==coordinates[3]-1&&t==time) return 1;
+    if(r+1<land.length&& t < time && land[r+1].charAt(c)!='*')cnt+=solve(r+1,c,t+1);
+    if(r-1>-1&& t < time && land[r-1].charAt(c)!='*')cnt+=solve(r-1,c,t+1);
+    if(c+1<land[0].length()&& t < time && land[r].charAt(c+1)!='*')cnt+=solve(r,c+1,t+1);
+    if(c-1>-1&& t < time && land[r].charAt(c-1)!='*')cnt+=solve(r,c-1,t+1);
+    return cnt;
+}}
 public class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
     File LakeData = new File(filename);
@@ -110,8 +106,9 @@ public class USACO{
     return depth*72*72;
     }
   public static void main(String[] args) throws FileNotFoundException {
-    grass blue = new grass("ctravel.1.in");
+    grass blue = new grass(args[0]);
     System.out.print(Arrays.toString(blue.ln1)+'\n'+Arrays.deepToString(blue.land) + '\n' + Arrays.toString(blue.coordinates)+"\nHere's the time:" + blue.time);
+    System.out.print("\nHere's the Solution:\n"+blue.solve(blue.coordinates[0]-1,blue.coordinates[1]-1,0));
   }
 
 }
